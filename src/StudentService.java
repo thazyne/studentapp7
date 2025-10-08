@@ -16,4 +16,13 @@ public class StudentService {
         }
         students.forEach(System.out::println);
     }
+
+    public void deleteStudentByNim(String nim) {
+        boolean removed = students.removeIf(s -> s.getNim().equals(nim));
+        if (removed) {
+            System.out.println("Student with NIM " + nim + " deleted successfully!");
+        } else {
+            System.out.println("Student with NIM " + nim + " not found.");
+        }
+    }
 }
