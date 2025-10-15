@@ -18,8 +18,12 @@ public class StudentService {
     }
 
     public void deleteStudentByNim(String nim) {
-        boolean removed = students.removeIf(s -> s.getNim().equals(nim));
-        if (removed) {
+        Student studentToDelete = students.stream()
+                .filter(s -> s.getNim().equals(nim))
+                .findFirst()
+                .orElse(null);
+        if (studentToDelete != null) {
+            students.remove(studentToDelete);
             System.out.println("Student with NIM " + nim + " deleted successfully!");
         } else {
             System.out.println("Student with NIM " + nim + " not found.");
